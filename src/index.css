@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-gray-900 text-white;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Animaciones y transiciones */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Hover effects */
+.hover-scale {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Pulse animation for notifications */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Estilos personalizados para inputs y botones en modo oscuro */
+input, select, textarea {
+  @apply bg-gray-800 border-gray-700 text-white transition-all duration-200;
+}
+
+input:focus, select:focus, textarea:focus {
+  @apply ring-2 ring-indigo-500 border-indigo-500;
+  transform: translateY(-1px);
+}
+
+button {
+  @apply transition-all duration-200;
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+/* Scrollbar personalizado para modo oscuro */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full transition-colors duration-200;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Card animations */
+.card {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.card:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+/* Toast animations */
+.toast-enter {
+  transform: translateX(100%);
+}
+
+.toast-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.toast-exit {
+  transform: translateX(0);
+}
+
+.toast-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-in;
+}
+
+/* Loading spinner */
+.spinner {
+  @apply w-5 h-5 border-2 border-gray-300 border-t-indigo-600 rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status indicators */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.active {
+  @apply bg-green-500;
+}
+
+.status-dot.pending {
+  @apply bg-yellow-500;
+}
+
+.status-dot.inactive {
+  @apply bg-red-500;
+}
+
+/* Form focus states */
+.form-input:focus {
+  @apply ring-2 ring-indigo-500 border-indigo-500;
+  animation: formFocus 0.2s ease-out;
+}
+
+@keyframes formFocus {
+  0% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Table row hover effect */
+tr {
+  @apply transition-colors duration-200;
+}
+
+tr:hover td {
+  @apply bg-gray-700/50;
+}
+
+/* Button hover effects */
+.btn {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.btn:hover {
+  @apply transform -translate-y-0.5 shadow-lg;
+}
+
+.btn:active {
+  @apply transform translate-y-0.5;
+}
+
+/* Modal animations */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300;
+}
+
+.modal-content {
+  @apply transform transition-all duration-300;
+}
+
+.modal-enter .modal-overlay {
+  opacity: 0;
+}
+
+.modal-enter .modal-content {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-enter-active .modal-overlay {
+  opacity: 1;
+}
+
+.modal-enter-active .modal-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Notification badge animation */
+.notification-badge {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center;
+  animation: notificationPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes notificationPop {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
